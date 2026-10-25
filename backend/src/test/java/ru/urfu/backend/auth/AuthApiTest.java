@@ -19,9 +19,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import ru.urfu.backend.PostgresIntegrationTest;
-import ru.urfu.backend.user.User;
-import ru.urfu.backend.user.UserRepository;
-import ru.urfu.backend.user.UserRole;
+import ru.urfu.backend.entity.User;
+import ru.urfu.backend.repository.UserRepository;
+import ru.urfu.backend.entity.enums.UserRole;
 
 @AutoConfigureMockMvc
 class AuthApiTest extends PostgresIntegrationTest {
@@ -33,8 +33,13 @@ class AuthApiTest extends PostgresIntegrationTest {
 	@BeforeEach
 	void setUp() {
 		users.deleteAll();
-		users.save(new User("anna@example.com", "+79990001122", passwordEncoder.encode("secret-123"),
-				UserRole.ORGANIZER, OffsetDateTime.now()));
+		User anna = new User();
+		anna.setEmail("anna@example.com");
+		anna.setPhone("+79990001122");
+		anna.setPasswordHash(passwordEncoder.encode("secret-123"));
+		anna.setRole(UserRole.ORGANIZER);
+		anna.setTermsAcceptedAt(OffsetDateTime.now());
+		users.save(anna);
 	}
 
 	@Test

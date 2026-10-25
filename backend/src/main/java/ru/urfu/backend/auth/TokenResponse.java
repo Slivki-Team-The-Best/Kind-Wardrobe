@@ -1,6 +1,6 @@
 package ru.urfu.backend.auth;
 
-import ru.urfu.backend.user.UserRole;
+import ru.urfu.backend.entity.enums.UserRole;
 
 public record TokenResponse(String accessToken, String tokenType, long expiresIn, Long userId, UserRole role) {
 

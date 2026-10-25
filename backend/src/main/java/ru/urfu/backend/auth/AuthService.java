@@ -6,8 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.urfu.backend.config.JwtService;
-import ru.urfu.backend.user.User;
-import ru.urfu.backend.user.UserRepository;
+import ru.urfu.backend.entity.User;
+import ru.urfu.backend.repository.UserRepository;
 
 @Service
 public class AuthService {
