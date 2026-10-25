@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16
+    container_name: kind-wardrobe-db
+    environment:
+      POSTGRES_DB: kind_wardrobe
+      POSTGRES_USER: kind_wardrobe
+      POSTGRES_PASSWORD: kind_wardrobe
+    ports:
+      # если 5432 занят локальным PostgreSQL: DB_PORT=5433 docker compose up -d
+      # и тот же порт в DB_URL бэкенда
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kind_wardrobe -d kind_wardrobe"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db-data:
