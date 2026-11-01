@@ -1,0 +1,31 @@
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-layout__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-layout__main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px clamp(16px, 2.8vw, 40px) 48px 0;
+}
+
+.app-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .app-layout__main {
+    padding-left: 16px;
+  }
+}

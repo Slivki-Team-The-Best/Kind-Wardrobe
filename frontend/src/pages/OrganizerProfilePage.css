@@ -1,0 +1,148 @@
+.page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.page-head__title {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: -0.015em;
+}
+
+.page-head__subtitle {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.role-badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.organizer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 437px);
+  align-items: start;
+  gap: 24px;
+}
+
+.organizer__side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.preview {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.preview--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 24px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.preview__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 312 / 179;
+  object-fit: cover;
+}
+
+.preview__photo--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-soft);
+  color: #43a047;
+}
+
+.preview__body {
+  padding: 24px 24px 22px;
+}
+
+.point-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.point-status--closed {
+  background: #fff4e5;
+  color: #b26a00;
+}
+
+.preview__name {
+  margin-top: 12px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: -0.01em;
+}
+
+.preview__address {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.preview__hours {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--green);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.hint svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+@media (max-width: 1100px) {
+  .organizer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-head__title {
+    font-size: 26px;
+  }
+}

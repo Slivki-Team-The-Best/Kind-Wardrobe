@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import AppLayout from './components/AppLayout';
+import HomePage from './pages/HomePage';
+import OrganizerProfilePage from './pages/OrganizerProfilePage';
 
+// Страницы остальных участников (вход, регистрация, лента, карта, кабинет и т. д.) добавляются сюда же.
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route element={<AppLayout allowedRoles={['ORGANIZER']} />}>
+        <Route path="/organizer/profile" element={<OrganizerProfilePage />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
