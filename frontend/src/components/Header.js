@@ -14,7 +14,8 @@ function UserMenu({ user, point, onLogout }) {
   const [open, setOpen] = useState(false);
   const isOrganizer = user.role === 'ORGANIZER';
   const firstName = (user.name || user.email).split(' ')[0];
-  const title = isOrganizer && point ? `${firstName} · ${point.name}` : user.name || user.email;
+  const organizerTitle = user.name ? `${firstName} · ${point?.name}` : point?.name;
+  const title = isOrganizer && point ? organizerTitle : user.name || user.email;
 
   return (
     <div className="user-menu">

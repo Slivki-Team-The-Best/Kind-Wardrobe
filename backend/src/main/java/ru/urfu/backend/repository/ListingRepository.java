@@ -14,9 +14,13 @@ import java.util.Optional;
 
 public interface ListingRepository extends JpaRepository<Listing, Long>, JpaSpecificationExecutor<Listing> {
 
+    @EntityGraph(attributePaths = "photos")
     List<Listing> findByAuthorIdOrderByCreatedAtDesc(Long authorId);
 
+    @EntityGraph(attributePaths = "photos")
     List<Listing> findByAuthorIdAndStatusOrderByCreatedAtDesc(Long authorId, ListingStatus status);
+
+    long countByAuthorId(Long authorId);
 
     @EntityGraph(attributePaths = {"photos", "author"})
     Optional<Listing> findWithPhotosAndAuthorById(Long id);

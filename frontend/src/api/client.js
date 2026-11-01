@@ -25,8 +25,9 @@ export function setUnauthorizedHandler(handler) {
 
 export async function apiFetch(path, { method = 'GET', body } = {}) {
   const token = getToken();
+  const isForm = body instanceof FormData;
   const headers = { Accept: 'application/json' };
-  if (body !== undefined) headers['Content-Type'] = 'application/json';
+  if (body !== undefined && !isForm) headers['Content-Type'] = 'application/json';
   if (token) headers.Authorization = `Bearer ${token}`;
 
   let response;
@@ -34,7 +35,7 @@ export async function apiFetch(path, { method = 'GET', body } = {}) {
     response = await fetch(path, {
       method,
       headers,
-      body: body === undefined ? undefined : JSON.stringify(body),
+      body: body === undefined || isForm ? body : JSON.stringify(body),
     });
   } catch {
     throw new ApiError(0, 'Нет связи с сервером. Попробуйте позже');
@@ -43,7 +44,8 @@ export async function apiFetch(path, { method = 'GET', body } = {}) {
   const data = await response.json().catch(() => null);
   if (response.status === 401 && token) onUnauthorized();
   if (!response.ok) {
-    throw new ApiError(response.status, data?.detail || 'Что-то пошло не так. Попробуйте позже', data?.errors);
+    const fallback = response.status === 413 ? 'Файлы слишком большие' : 'Что-то пошло не так. Попробуйте позже';
+    throw new ApiError(response.status, data?.detail || fallback, data?.errors);
   }
   return data;
 }

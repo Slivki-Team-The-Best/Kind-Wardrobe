@@ -8,7 +8,7 @@ function menuFor(role) {
   const items = [
     { to: '/cabinet', label: 'Личный кабинет', Icon: LayoutGrid },
     { to: isOrganizer ? '/organizer/profile' : '/profile', label: 'Профиль', Icon: User },
-    { to: '/my-listings', label: 'Мои объявления', Icon: Layers },
+    ...(isOrganizer ? [] : [{ to: '/my-listings', label: 'Мои объявления', Icon: Layers }]),
     { to: '/map', label: 'Карта пунктов', Icon: Map },
     { to: '/eco', label: 'Эко-трекер', Icon: Leaf },
     { to: '/settings', label: 'Настройки', Icon: SlidersHorizontal },

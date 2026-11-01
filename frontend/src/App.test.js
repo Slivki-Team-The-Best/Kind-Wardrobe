@@ -175,7 +175,7 @@ describe('профиль организатора', () => {
   });
 });
 
-test('гость на странице организатора уходит на главную', () => {
+test('гость на странице организатора уходит на страницу входа', () => {
   renderApp('/organizer/profile');
-  expect(screen.getByRole('heading', { name: 'Добрый Шкаф. Делитесь добром.' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'С возвращением!' })).toBeInTheDocument();
 });

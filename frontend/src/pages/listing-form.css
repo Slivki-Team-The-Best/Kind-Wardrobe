@@ -1,0 +1,156 @@
+.listing-form {
+  padding: 20px;
+}
+
+.listing-form__grid {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 20px;
+}
+
+.photos__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.photos__counter {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.photo-main,
+.photo-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.photo-main {
+  aspect-ratio: 1 / 0.8;
+  background: #fff;
+}
+
+.photo-main img,
+.photo-slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-main--empty,
+.photo-slot--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  border: 1.5px dashed #c9d4e0;
+  background: #fff;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.photo-main--empty {
+  font-size: 13px;
+}
+
+.photo-main--invalid {
+  border-color: var(--danger);
+}
+
+.photo-slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.photo-slot {
+  aspect-ratio: 1;
+  background: #fff;
+}
+
+.photo-slot--empty:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.photo-remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(17, 24, 39, 0.6);
+  color: #fff;
+  cursor: pointer;
+}
+
+.photo-remove:hover {
+  background: rgba(17, 24, 39, 0.8);
+}
+
+.photo-cover-label {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+}
+
+.photos__hint {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.photos__tip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 12px;
+}
+
+.listing-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.listing-form__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.listing-form__note {
+  margin-right: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  .listing-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-main {
+    max-width: 320px;
+  }
+}
