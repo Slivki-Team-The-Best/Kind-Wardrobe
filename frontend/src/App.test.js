@@ -143,6 +143,17 @@ describe('профиль организатора', () => {
     expect(screen.getByText(/Заполните данные пункта/)).toBeInTheDocument();
   });
 
+  test('на страницу профиля можно перейти из меню пользователя в шапке', async () => {
+    api.getProfile.mockResolvedValue(organizer);
+    api.getOrganizerPoint.mockResolvedValue(point);
+
+    renderApp('/');
+    userEvent.click(await screen.findByRole('button', { name: /Организатор/ }));
+    userEvent.click(screen.getByRole('menuitem', { name: 'Профиль' }));
+
+    expect(await screen.findByRole('heading', { name: 'Профиль организатора' })).toBeInTheDocument();
+  });
+
   test('роль USER не попадает на страницу организатора', async () => {
     api.getProfile.mockResolvedValue({ ...organizer, role: 'USER' });
 

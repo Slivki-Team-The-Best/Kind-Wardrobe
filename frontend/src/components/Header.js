@@ -1,4 +1,4 @@
-import { Bell, ChevronDown, LogOut, Search } from 'lucide-react';
+import { Bell, ChevronDown, LogOut, Search, User } from 'lucide-react';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
@@ -38,6 +38,14 @@ function UserMenu({ user, point, onLogout }) {
       </button>
       {open && (
         <div className="user-menu__dropdown" role="menu">
+          <Link
+            to={isOrganizer ? '/organizer/profile' : '/profile'}
+            role="menuitem"
+            className="user-menu__item"
+            onClick={() => setOpen(false)}
+          >
+            <User size={16} /> Профиль
+          </Link>
           <button type="button" role="menuitem" className="user-menu__item" onClick={onLogout}>
             <LogOut size={16} /> Выйти
           </button>
